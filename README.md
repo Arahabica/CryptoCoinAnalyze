@@ -1,6 +1,5 @@
 [analyze.ipynb](./analyze.ipynb)
 
-
 # 暗号通貨間の相関関係の分析
 
 ビットコイン、イーサリアム、リップル、ライトコインの対米ドルの相関関係を調査した。
@@ -21,10 +20,11 @@ def fetch_list(coin_type):
     data = data['price_usd'][0:-1]
 
     arr = []
+    first = data[0][1]
     for d in data:
         # コインによって微妙に取得時刻が違うがそのずれは無視して、日付情報にしてしまう。
         date = datetime.fromtimestamp(int(d[0]) / 1000).date()
-        value = d[1]
+        value = d[1] / first
         arr.append({"date": date, "value": value})
     result = pd.DataFrame(index=[t["date"] for t in arr])
     result[coin_type] = [t["value"] for t in arr]
@@ -60,6 +60,48 @@ data[-1:].index[0]
 
     datetime.date(2017, 10, 21)
 
+
+
+### 2015/8/7 からの2017/10/21の価格変化
+
+* 全通貨、2015/8/7時点の値を1に揃えている
+
+
+```python
+%matplotlib inline
+import warnings
+warnings.filterwarnings('ignore')
+
+data.plot()
+```
+
+
+
+
+    <matplotlib.axes._subplots.AxesSubplot at 0x10a6efa58>
+
+
+
+
+![png](./public/images/output_5_1.png)
+
+
+* 2017年以前が潰れてしまうので、対数化したグラフも用意した
+
+
+```python
+data.plot(logy=True)
+```
+
+
+
+
+    <matplotlib.axes._subplots.AxesSubplot at 0x10ac81b70>
+
+
+
+
+![png](./public/images/output_7_1.png)
 
 
 ### 全データによる相関関係
