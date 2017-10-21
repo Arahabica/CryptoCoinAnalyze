@@ -1,1 +1,1 @@
-[Report](./blob/master/analyze.ipynb)
+[Report](./analyze.ipynb)
