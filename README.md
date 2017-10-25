@@ -78,12 +78,12 @@ data.plot()
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x11587b470>
+    <matplotlib.axes._subplots.AxesSubplot at 0x107511a20>
 
 
 
 
-![png](./public/images/output_5_1.png)
+![png](.public/images/output_5_1.png)
 
 
 * 2017年以前が潰れてしまうので、対数化したグラフも用意した
@@ -96,7 +96,7 @@ data.plot(logy=True)
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x11587b390>
+    <matplotlib.axes._subplots.AxesSubplot at 0x1074ef898>
 
 
 
@@ -341,7 +341,7 @@ fig, subplts = plt.subplots(2,2,figsize=(20, 10))
 stats = []
 names=[]
 i = 0
-for name, series in data.iteritems():
+for name, series in data.pct_change()[1:].iteritems():
     ave = series.mean()
     std = np.std(series, ddof=1)
     skew = scipy.stats.skew(series)  # 歪度
@@ -393,31 +393,31 @@ pd.DataFrame(stats, index=names, columns=['平均','標準偏差','歪度','尖�
   <tbody>
     <tr>
       <th>bitcoin</th>
-      <td>8.824570</td>
-      <td>9.330985</td>
-      <td>1.882888</td>
-      <td>2.722521</td>
+      <td>0.004364</td>
+      <td>0.036192</td>
+      <td>0.244887</td>
+      <td>7.202612</td>
     </tr>
     <tr>
       <th>ethereum</th>
-      <td>22.824129</td>
-      <td>38.454255</td>
-      <td>1.662061</td>
-      <td>1.118623</td>
+      <td>0.009364</td>
+      <td>0.084633</td>
+      <td>0.843097</td>
+      <td>8.468221</td>
     </tr>
     <tr>
       <th>ripple</th>
-      <td>9.243208</td>
-      <td>15.655310</td>
-      <td>1.660447</td>
-      <td>1.265850</td>
+      <td>0.007020</td>
+      <td>0.088482</td>
+      <td>8.008015</td>
+      <td>121.429877</td>
     </tr>
     <tr>
       <th>litecoin</th>
-      <td>3.022372</td>
-      <td>4.215165</td>
-      <td>1.758127</td>
-      <td>1.756267</td>
+      <td>0.004757</td>
+      <td>0.056761</td>
+      <td>2.855094</td>
+      <td>27.714189</td>
     </tr>
   </tbody>
 </table>
