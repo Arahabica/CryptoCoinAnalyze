@@ -6,7 +6,7 @@ cycler==0.10.0
 decorator==4.1.2
 entrypoints==0.2.3
 html5lib==1.0b10
-idna==2.6
+idna==3.7
 ipykernel==4.6.1
 ipython==8.10.0
 ipython-genutils==0.2.0
